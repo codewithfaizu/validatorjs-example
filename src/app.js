@@ -2,7 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-require('dotenv').config()
+const url = "mongodb://localhost:27017/validation-db";
+const port = 7000;
+
 const app = express();
 const route = require('./routes');
 
@@ -15,17 +17,15 @@ app.use('/api', route);
 
 
 // Connect to Database new
-mongoose.connect(
-    'mongodb://localhost/validation-db',
-    { useNewUrlParser: true },
-    (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Successfully Connected to the database');
-        }
+const ConnectToDB = async () => {
+    try {
+        await mongoose.connect(url, { useNewUrlParser: true });
+        console.log("app successfully connected to mongodb")
+    } catch (error) {
+        console.log("error is:", error.message)
     }
-);
+}
 
-app.listen(process.env.PORT);
-console.log(`The magic happens at ${process.env.HOST}:${process.env.PORT}`);
+
+
+app.listen(port, () => console.log(`server running at port ${port}`));
