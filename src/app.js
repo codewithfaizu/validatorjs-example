@@ -16,7 +16,7 @@ app.use('/api', route);
 
 // Connect to Database new
 mongoose.connect(
-    process.env.DB_CON_STRING,
+    'mongodb://localhost/validation-db',
     { useNewUrlParser: true },
     (err) => {
         if (err) {
