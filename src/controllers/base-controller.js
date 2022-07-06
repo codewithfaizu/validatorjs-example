@@ -9,27 +9,6 @@ module.exports = {
     },
 
 
-    signup: async (req, res) => {
-
-        const { email, gender, username, password, phone } = req.body;
-
-        const newUser = new User({ email, gender, username, password, phone });
-
-        try {
-            await newUser.save();
-
-            return res.status(201).json({
-                success: true,
-                message: "signup successful",
-                data: newUser
-            });
-
-        } catch (error) {
-            return res.status(412).send({
-                success: false,
-                message: error.message
-            })
-        }
-    }
+    signup: async (req, res) => { }
 
 }
