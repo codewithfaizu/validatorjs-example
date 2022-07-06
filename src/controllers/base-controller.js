@@ -15,12 +15,8 @@ module.exports = {
 
         const newUser = new User({ email, gender, username, password, phone });
 
-        console.log("new user", newUser)
-
         try {
             await newUser.save();
-
-            console.log("done")
 
             return res.status(201).json({
                 success: true,
